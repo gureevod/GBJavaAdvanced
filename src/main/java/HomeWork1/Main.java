@@ -1,7 +1,7 @@
 package HomeWork1;
 
-import java.util.Comparator;
 
+//this is a comment
 public class Main {
     public static void main(String[] args) {
         CanJump[] jumpers = {new Cat(11, 10), new Human(12, 22)};
