@@ -70,7 +70,7 @@ public class AppData {
 
     public static void main(String[] args) {
         AppData appData = new AppData();
-        //appData.save("test.csv"); 
+        //appData.save("test.csv");
         appData.load("test.csv");
         System.out.println(Arrays.toString(appData.header));
         System.out.println(Arrays.deepToString(appData.data));
