@@ -1,9 +1,8 @@
 package HomeWork7;
 
-import java.io.IOException;
-
 public class Main {
-    public static void main(String[] args) throws IOException {
-        Oracle.getWeather();
+    public static void main(String[] args) {
+        UserInterfaceView userInterfaceView = new UserInterfaceView();
+        userInterfaceView.runInterface();
     }
 }

@@ -1,4 +1,4 @@
-package HomeWork7;
+package HomeWork6;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.HttpUrl;
@@ -35,8 +35,7 @@ public class Oracle {
 
             Response response = okHttpClient.newCall(request).execute();
             String weatherText = objectMapper.readTree(response.body().string()).get(0).at("/WeatherText").asText();
-            //String weatherTemperatureMetric = objectMapper.readTree(response.body().string()).get(0).at("/Temperature/").asText();
-            //Не понял, как nested json пройти и вытащить оттуда температуру
-            System.out.println("В данный момент в Санкт-Петербурге '" + weatherText + "', а температура составляет - " + 23 + " C");
+            Integer degrees = objectMapper.readTree(response.body().string()).get(0).at("/Temperature/Metric/Value").asInt();
+            System.out.println("В данный момент в Санкт-Петербурге '" + weatherText + "', а температура составляет - " + degrees + " C");
     }
 }
