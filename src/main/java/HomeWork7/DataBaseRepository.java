@@ -2,10 +2,13 @@ package HomeWork7;
 
 import HomeWork7.entity.Weather;
 
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DataBaseRepository {
     private static final String DB_URL = "jdbc:sqlite:geekbrains.db";
@@ -32,7 +35,18 @@ public class DataBaseRepository {
         }
     }
 
-    public void getSavedWeather() {
-        //TODO: написать метод, который достанет из базы все записи о погоде и выведет пользователю
+    public static void getSavedWeather() throws SQLException {
+        Connection connection = DriverManager.getConnection(DB_URL);
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("select * from weather");
+        System.out.println("Вывод сохраненной погоды и БД...");
+
+        while (resultSet.next()) {
+            System.out.print(resultSet.getString("city_name") + ", ");
+            System.out.print(resultSet.getString("weather_text") + ", ");
+            System.out.print(resultSet.getInt("degrees"));
+            System.out.println();
+        }
+        //TODO: написать метод, который достанет из базы все записи о погоде и выведет пользователю - Готово
     }
 }

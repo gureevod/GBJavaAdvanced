@@ -14,7 +14,7 @@ public class UserInterfaceView {
             String city = scanner.nextLine();
 
             System.out.println("Введите опцию: 1 - получить текущую погоду, 0 - получить " +
-                    "прогноз погоды на 5 дней");
+                    "прогноз погоды на 5 дней, 2 - получить сохраненную погоду из БД");
             //TODO: добавить опцию получения погоды из базы данных
             String command = scanner.nextLine();
 

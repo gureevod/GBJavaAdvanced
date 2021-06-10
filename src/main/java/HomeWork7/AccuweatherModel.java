@@ -8,6 +8,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AccuweatherModel implements WeatherModel {
     private static final String PROTOCOL = "http";
@@ -49,8 +50,13 @@ public class AccuweatherModel implements WeatherModel {
             Integer degrees = objectMapper.readTree(responseString).get(0).at("/Temperature/Metric/Value").asInt();
             Weather weather = new Weather(selectedCity, weatherText, degrees);
             System.out.println(weather);
-            //DataBaseRepository dataBaseRepository = new DataBaseRepository();
-            //dataBaseRepository.saveWeather(weather);
+            DataBaseRepository dataBaseRepository = new DataBaseRepository();
+            dataBaseRepository.saveWeather(weather);
+            try {
+                dataBaseRepository.getSavedWeather();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             //TODO: сделать красивый вывод в консоль - Готово
         }
 
@@ -99,4 +105,5 @@ public class AccuweatherModel implements WeatherModel {
         String cityKey = objectMapper.readTree(responseBody).get(0).at("/Key").asText();
         return cityKey;
     }
+
 }
